@@ -1,2 +1,2 @@
-# SQL_Rockbuster
+# SQL_Rockbuster_Video_Rental
 SQL_Rockbuster data analysis
