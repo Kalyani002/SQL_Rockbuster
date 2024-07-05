@@ -1,5 +1,5 @@
-<h>SQL_Rockbuster_Video_Rental</h>
-SQL_Rockbuster data analysis
+# SQL_Rockbuster_Video_Rental
+<h>SQL_Rockbuster data analysis</h>
 <h>Introduction</h>
 <p>Rockbuster Stealth LLC i s a movie rental company that used to have stores around the
 world. Facing stiff competition from streaming services such as Netflix and Amazon Prime,
