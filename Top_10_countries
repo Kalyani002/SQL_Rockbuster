@@ -1,0 +1,15 @@
+SELECT
+D.country,
+sum(E.amount)
+
+FROM
+customer A
+inner join payment E on a.customer_id=E.customer_id
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+
+
+GROUP BY D.country
+ORDER BY sum(E.amount) desc
+LIMIT 10;
