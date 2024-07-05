@@ -1,0 +1,53 @@
+# Query to  find out top actors
+select
+f.first_name || ' ' ||
+f.last_name as Name,
+sum(a.amount) As Gross_Revenue 
+from payment a 
+
+inner join rental b on a.rental_id=b.rental_id
+inner join inventory c on b.inventory_id=c.inventory_id
+inner join film d on c.film_id=d.film_id
+inner join film_actor e on d.film_id=e.film_id
+inner join actor f on e.actor_id=f.actor_id
+
+group by (f.first_name,f.last_name)
+order by sum(a.amount) desc
+limit 10
+
+# Query to find out top countries by coustomers
+SELECT Count(A.customer_id) AS number_of_customers,
+D.country
+
+FROM
+customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+
+GROUP BY D.country
+
+ORDER BY number_of_customers DESC
+LIMIT 10;
+
+# Query to find out top cities in top countries
+SELECT Count(A.customer_id) AS number_of_customers,
+D.country,
+C.city
+FROM
+customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+WHERE D.country IN (
+SELECT D.country FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+GROUP BY D.country
+ORDER BY COUNT(A.customer_id) DESC
+LIMIT 10)
+GROUP BY D.country,
+C.city
+ORDER BY number_of_customers DESC
+LIMIT 10;
